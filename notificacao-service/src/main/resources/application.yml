@@ -1,0 +1,21 @@
+
+spring:
+  config:
+    import: "optional:configserver:http://localhost:8888/"
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+      config:
+        profile: notificacao-dev
+
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus"]
+

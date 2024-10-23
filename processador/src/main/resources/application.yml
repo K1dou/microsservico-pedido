@@ -1,0 +1,23 @@
+#rabbitmq.queue.name=pedidos.v1.pedido-criado.gerar-processamento
+#rabbitmq.exchange.name=pedidos.v1.pedido-criado
+#
+#
+spring:
+  config:
+    import: "optional:configserver:http://localhost:8888/"
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+          enabled: true
+      config:
+          profile: processador-dev
+
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus"]
